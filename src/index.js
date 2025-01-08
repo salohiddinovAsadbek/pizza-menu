@@ -60,14 +60,14 @@ function App() {
 function Pizza(props) {
   console.log(props);
   return (
-    <div className="pizza">
-      <img src={props.photoName} alt={props.name} />
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingridients}</p>
-        <span>{props.price + 3}</span>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingridients}</p>
+        <span>{props.pizzaObj.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -83,7 +83,12 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <Pizza
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+      {/* <Pizza
         Pizza
         name="Pizza Spinaci"
         ingridients="Tomato, mozarella, spinach, and ricotta cheese"
@@ -95,7 +100,7 @@ function Menu() {
         ingridients="Tomato , mushrooms"
         price={12}
         photoName="/public/pizzas/funghi.jpg"
-      />
+      /> */}
     </main>
   );
 }
